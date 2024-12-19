@@ -10,3 +10,19 @@ class Formation(models.Model):
 
     def __str__(self):
         return self.intitule
+    
+class UE(models.Model):
+    
+    titre = models.CharField(max_length=100)
+    description = models.TextField()
+    CM = models.PositiveIntegerField()  
+    TD = models.PositiveIntegerField()  
+    TP = models.PositiveIntegerField()  
+    credits = models.PositiveIntegerField()  
+
+    
+    responsables = models.ManyToManyField('auth.User', blank=True)
+    formations = models.ManyToManyField('Formation')
+
+    def __str__(self):
+        return self.titre
