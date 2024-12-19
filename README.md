@@ -87,3 +87,8 @@
 ## COMMANDES QUESTION 15:
 
 1. `python manage.py runserver 0.0.0.0:8000 &`
+
+## COMMANDES QUESTION 16:
+
+1. `python manage.py runserver 0.0.0.0:8000 `
+
