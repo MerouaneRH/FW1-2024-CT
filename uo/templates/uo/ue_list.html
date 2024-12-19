@@ -1,0 +1,20 @@
+{% extends 'uo/base.html' %}
+
+{% block title %}
+Liste des unités d'enseignement
+{% endblock %}
+
+{% block content %}
+<h2>Liste des unités d'enseignement</h2>
+<ul class="list-group">
+    {% for ue in ues %}
+        <li class="list-group-item">
+            <a href="{% url 'ue_detail' ue.id %}">
+                {{ ue.titre }}
+            </a>
+        </li>
+    {% empty %}
+        <li class="list-group-item">Aucune unité d'enseignement disponible.</li>
+    {% endfor %}
+</ul>
+{% endblock %}

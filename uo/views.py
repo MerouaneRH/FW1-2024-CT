@@ -24,3 +24,7 @@ def ue_detail(request, m):
 def formation_list(request):
     formations = Formation.objects.all()
     return render(request, 'uo/formation_list.html', {'formations': formations})
+
+def ue_list(request):
+    ues = UE.objects.all()
+    return render(request, 'uo/ue_list.html', {'ues': ues})
