@@ -6,6 +6,12 @@ class UEForm(forms.ModelForm):
         model = UE
         fields = ['titre', 'description', 'CM', 'TD', 'TP', 'credits', 'responsables', 'formations']
         widgets = {
-            'responsables': forms.CheckboxSelectMultiple(),
-            'formations': forms.CheckboxSelectMultiple(),
+            'titre': forms.TextInput(attrs={'class': 'form-control'}),
+            'description': forms.Textarea(attrs={'class': 'form-control'}),
+            'CM': forms.NumberInput(attrs={'class': 'form-control'}),
+            'TD': forms.NumberInput(attrs={'class': 'form-control'}),
+            'TP': forms.NumberInput(attrs={'class': 'form-control'}),
+            'credits': forms.NumberInput(attrs={'class': 'form-control'}),
+            'responsables': forms.CheckboxSelectMultiple(attrs={'class': 'form-check'}),
+            'formations': forms.CheckboxSelectMultiple(attrs={'class': 'form-check'}),
         }

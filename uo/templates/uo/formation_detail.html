@@ -1,21 +1,50 @@
 {% extends 'uo/base.html' %}
 
 {% block title %}
-Détail de la formation : {{ formation.titre }}
+Détail de la formation : {{ formation.intitule }}
 {% endblock %}
 
 {% block content %}
-<h3>{{ formation.intitule }}</h3>
-    <p>{{ formation.description }}</p>
+<div class="container py-5">
+    <!-- Titre de la formation -->
+    <div class="text-center mb-4">
+        <h1 class="display-4" style="color: #18534F;">
+            <i class="fas fa-graduation-cap" style="color: #D6955B;"></i> {{ formation.intitule }}
+        </h1>
+    </div>
 
-<h2 class="mt-5">Unités d'enseignement associées</h2>
-<ul class="list-group">
-    {% for ue in ues %}
-        <li class="list-group-item">
-            {{ ue.titre }}
-        </li>
-    {% empty %}
-        <li class="list-group-item">Aucune unité d'enseignement associée.</li>
-    {% endfor %}
-</ul>
+    <!-- Description de la formation -->
+    <div class="mb-4">
+        <h3 style="color: #226D68;">Description :</h3>
+        <p class="lead" style="color: #18534F;">{{ formation.description }}</p>
+    </div>
+
+    <!-- Bouton pour revenir à la liste des formations -->
+    <div class="mb-4">
+        <a href="{% url 'formation_list' %}" class="btn" style="background-color: #18534F; color: #ECF8F6;">
+            <i class="fas fa-arrow-left"></i> Retour à la liste des formations
+        </a>
+    </div>
+
+    <!-- Unités d'enseignement associées -->
+    <div class="mt-5">
+        <h3 style="color: #D6955B;">
+            <i class="fas fa-book-open" style="color: #D6955B;"></i> Unités d'enseignement associées
+        </h3>
+        <ul class="list-group mt-3">
+            {% for ue in ues %}
+                <li class="list-group-item d-flex justify-content-between align-items-center" style="background-color: #ECF8F6; color: #18534F;">
+                    {{ ue.titre }}
+                    <a href="{% url 'ue_detail' ue.id %}" class="btn btn-sm" style="background-color: #226D68; color: #ECF8F6;">
+                        <i class="fas fa-info-circle"></i> Voir
+                    </a>
+                </li>
+            {% empty %}
+                <li class="list-group-item" style="background-color: #FEEAA1; color: #18534F;">
+                    <i class="fas fa-exclamation-circle"></i> Aucune unité d'enseignement associée.
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
 {% endblock %}
