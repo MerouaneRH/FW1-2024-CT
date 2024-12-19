@@ -8,10 +8,12 @@ Liste des unités d'enseignement
 <h2>Liste des unités d'enseignement</h2>
 <ul class="list-group">
     {% for ue in ues %}
-        <li class="list-group-item">
+        <li class="list-group-item d-flex justify-content-between align-items-center">
             <a href="{% url 'ue_detail' ue.id %}">
                 {{ ue.titre }}
             </a>
+            <!-- Bouton de suppression -->
+            <a href="{% url 'ue_delete' ue.id %}" class="btn btn-danger btn-sm">Supprimer</a>
         </li>
     {% empty %}
         <li class="list-group-item">Aucune unité d'enseignement disponible.</li>

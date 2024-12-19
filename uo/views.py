@@ -1,6 +1,8 @@
 from django.shortcuts import render,get_object_or_404, redirect
 from .models import Formation,UE
 from .forms import UEForm
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 
 
 # Create your views here.
@@ -55,3 +57,15 @@ def ue_edit(request, m):
         form = UEForm(instance=ue)
 
     return render(request, 'uo/ue_edit.html', {'form': form, 'ue': ue})
+
+from django.http import HttpResponseRedirect
+from django.urls import reverse
+
+def ue_delete(request, m):
+    ue = get_object_or_404(UE, id=m)
+
+    if request.method == 'POST':
+        ue.delete()
+        return HttpResponseRedirect(reverse('ue_list'))  # Redirige vers la liste des UE après suppression
+
+    return render(request, 'uo/ue_delete.html', {'ue': ue})

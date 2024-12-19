@@ -1,0 +1,16 @@
+{% extends 'uo/base.html' %}
+
+{% block title %}Supprimer {{ ue.titre }}{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <h1 class="text-danger">Supprimer l'UE : {{ ue.titre }}</h1>
+    <p>Êtes-vous sûr de vouloir supprimer cette unité d'enseignement ? Cette action est irréversible.</p>
+    
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Confirmer la suppression</button>
+        <a href="{% url 'ue_detail' ue.id %}" class="btn btn-secondary">Annuler</a>
+    </form>
+</div>
+{% endblock %}
