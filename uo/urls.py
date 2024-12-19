@@ -11,6 +11,7 @@ urlpatterns = [
     path('ues/', views.ue_list, name='ue_list'),
     path('ue/ajouter/', views.ue_add, name='ue_add'),
     path('', views.home, name='home'),
+    path('ue/modifier/<int:m>/', views.ue_edit, name='ue_edit'),
 
 
 ]
