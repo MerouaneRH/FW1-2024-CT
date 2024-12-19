@@ -9,6 +9,7 @@ urlpatterns = [
     path('ue/<int:m>/', views.ue_detail, name='ue_detail'),
     path('formations/', views.formation_list, name='formation_list'),
     path('ues/', views.ue_list, name='ue_list'),
+    path('ue/ajouter/', views.ue_add, name='ue_add'),
 
 
 ]

@@ -1,0 +1,70 @@
+{% extends 'uo/base.html' %}
+
+{% block title %}
+Ajouter une unité d'enseignement
+{% endblock %}
+
+{% block content %}
+<h2>Ajouter une unité d'enseignement</h2>
+<form method="post">
+    {% csrf_token %}
+
+    <div class="row">
+        <label for="{{ form.titre.id_for_label }}" class="col-md-2 col-form-label">Titre:</label>
+        <div class="col-md-10">
+            {{ form.titre }}
+        </div>
+    </div>
+
+    <div class="row">
+        <label for="{{ form.description.id_for_label }}" class="col-md-2 col-form-label">Description:</label>
+        <div class="col-md-10">
+            {{ form.description }}
+        </div>
+    </div>
+
+    <div class="row">
+        <label for="{{ form.CM.id_for_label }}" class="col-md-2 col-form-label">CM:</label>
+        <div class="col-md-10">
+            {{ form.CM }}
+        </div>
+    </div>
+
+    <div class="row">
+        <label for="{{ form.TD.id_for_label }}" class="col-md-2 col-form-label">TD:</label>
+        <div class="col-md-10">
+            {{ form.TD }}
+        </div>
+    </div>
+
+    <div class="row">
+        <label for="{{ form.TP.id_for_label }}" class="col-md-2 col-form-label">TP:</label>
+        <div class="col-md-10">
+            {{ form.TP }}
+        </div>
+    </div>
+
+    <div class="row">
+        <label for="{{ form.credits.id_for_label }}" class="col-md-2 col-form-label">Crédits:</label>
+        <div class="col-md-10">
+            {{ form.credits }}
+        </div>
+    </div>
+
+    <div class="row">
+        <label for="{{ form.responsables.id_for_label }}" class="col-md-2 col-form-label">Responsables:</label>
+        <div class="col-md-10">
+            {{ form.responsables }}
+        </div>
+    </div>
+    
+    <div class="row">
+        <label for="{{ form.formations.id_for_label }}" class="col-md-2 col-form-label">Formations:</label>
+        <div class="col-md-10">
+            {{ form.formations }}
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Ajouter</button>
+</form>
+{% endblock %}

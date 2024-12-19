@@ -1,5 +1,6 @@
-from django.shortcuts import render,get_object_or_404
+from django.shortcuts import render,get_object_or_404, redirect
 from .models import Formation,UE
+from .forms import UEForm
 
 
 # Create your views here.
@@ -28,3 +29,13 @@ def formation_list(request):
 def ue_list(request):
     ues = UE.objects.all()
     return render(request, 'uo/ue_list.html', {'ues': ues})
+
+def ue_add(request):
+    if request.method == 'POST':
+        form = UEForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('ue_list')
+    else:
+        form = UEForm()
+    return render(request, 'uo/ue_add.html', {'form': form})
