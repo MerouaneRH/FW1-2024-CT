@@ -1,5 +1,5 @@
 from django.shortcuts import render,get_object_or_404
-from .models import Formation
+from .models import Formation,UE
 
 
 # Create your views here.
@@ -14,3 +14,9 @@ def formation_detail(request, n):
     ues = formation.ue_set.all()  
 
     return render(request, 'uo/formation_detail.html', {'formation': formation, 'ues': ues})
+
+def ue_detail(request, m):
+    ue = get_object_or_404(UE, id=m)
+    formations = ue.formations.all()
+
+    return render(request, 'uo/ue_detail.html', {'ue': ue, 'formations': formations})

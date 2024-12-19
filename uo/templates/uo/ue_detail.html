@@ -1,0 +1,26 @@
+{% extends 'uo/base.html' %}
+{% block content %}
+
+  <div class="container">
+    <h1>{{ ue.titre }}</h1>
+    <p><strong>Description :</strong> {{ ue.description }}</p>
+    <div>
+    <h5>Heure du cours</h5>
+    <p><strong>CM:</strong> {{ ue.CM }}</p>
+    <p><strong>TD:</strong> {{ ue.TD }}</p>
+    <p><strong>TP:</strong> {{ ue.TP }}</p>
+
+</div>
+    
+    <h3>Formations associées :</h3>
+    <ul>
+      {% for formation in formations %}
+        <li>
+          <a href="{% url 'formation_detail' formation.id %}">{{ formation.intitule }}</a>
+        </li>
+      {% empty %}
+        <li>Aucune formation associée.</li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endblock %}
