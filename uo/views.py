@@ -39,3 +39,6 @@ def ue_add(request):
     else:
         form = UEForm()
     return render(request, 'uo/ue_add.html', {'form': form})
+
+def home(request):
+    return render(request, 'uo/home.html')
