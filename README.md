@@ -46,3 +46,7 @@
 
 1. `python manage.py makemigrations`
 2. `python manage.py migrate`
+
+## COMMANDES QUESTION 6:
+
+1. `python manage.py dumpdata > uo/fixtures/formation.json`
