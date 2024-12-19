@@ -1,0 +1,21 @@
+{% extends 'uo/base.html' %}
+
+{% block title %}
+Détail de la formation : {{ formation.titre }}
+{% endblock %}
+
+{% block content %}
+<h3>{{ formation.intitule }}</h3>
+    <p>{{ formation.description }}</p>
+
+<h2 class="mt-5">Unités d'enseignement associées</h2>
+<ul class="list-group">
+    {% for ue in ues %}
+        <li class="list-group-item">
+            {{ ue.titre }}
+        </li>
+    {% empty %}
+        <li class="list-group-item">Aucune unité d'enseignement associée.</li>
+    {% endfor %}
+</ul>
+{% endblock %}

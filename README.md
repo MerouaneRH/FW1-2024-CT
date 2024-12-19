@@ -59,3 +59,7 @@
 ## COMMANDES QUESTION 8:
 
 1. `python manage.py dumpdata > uo/fixtures/ue.json`
+
+## COMMANDES QUESTION 9:
+
+1. `python manage.py runserver 0.0.0.0:8000 &`
