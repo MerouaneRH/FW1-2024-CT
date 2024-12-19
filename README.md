@@ -11,8 +11,17 @@
 2. `docker exec -ti fw1-ct-votre_nom_utilisateur whoami`
 3. `django-admin startproject ct`
 4. `python manage.py startapp uo`
+
 5. `python manage.py runserver 0.0.0.0:8000 &`
+
 
 ## COMMANDES QUESTION 2 :
 
 1. `python manage.py runserver 0.0.0.0:8000 &`
+
+
+## COMMANDES QUESTION 3 :
+
+1. `python manage.py migrate`
+2. `python manage.py createsuperuser`
+
