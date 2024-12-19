@@ -42,3 +42,16 @@ def ue_add(request):
 
 def home(request):
     return render(request, 'uo/home.html')
+
+def ue_edit(request, m):
+    ue = get_object_or_404(UE, id=m)
+
+    if request.method == 'POST':
+        form = UEForm(request.POST, instance=ue)
+        if form.is_valid():
+            form.save()
+            return redirect(f'/ue/{ue.id}/') 
+    else:
+        form = UEForm(instance=ue)
+
+    return render(request, 'uo/ue_edit.html', {'form': form, 'ue': ue})
