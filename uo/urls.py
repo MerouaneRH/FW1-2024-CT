@@ -1,5 +1,3 @@
-
-
 from uo import views
 from django.urls import path
 
@@ -12,6 +10,7 @@ urlpatterns = [
     path('ue/ajouter/', views.ue_add, name='ue_add'),
     path('', views.home, name='home'),
     path('ue/modifier/<int:m>/', views.ue_edit, name='ue_edit'),
+    path('ue/supprimer/<int:m>/', views.ue_delete, name='ue_delete'),
 
 
 ]

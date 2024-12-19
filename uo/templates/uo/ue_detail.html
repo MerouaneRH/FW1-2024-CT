@@ -4,6 +4,7 @@
   <div class="container">
     <h1>{{ ue.titre }}</h1>
     <p><strong>Description :</strong> {{ ue.description }}</p>
+    <a href="{% url 'ue_delete' ue.id %}" class="btn btn-danger">Supprimer cette UE</a>
     <div>
     <h5>Heure du cours</h5>
     <p><strong>CM:</strong> {{ ue.CM }}</p>
@@ -18,6 +19,7 @@
         <li>
           <a href="{% url 'formation_detail' formation.id %}">{{ formation.intitule }}</a>
         </li>
+        
       {% empty %}
         <li>Aucune formation associée.</li>
       {% endfor %}
