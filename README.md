@@ -55,3 +55,7 @@
 
 1. `python manage.py makemigrations`
 2. `python manage.py migrate`
+
+## COMMANDES QUESTION 8:
+
+1. `python manage.py dumpdata > uo/fixtures/ue.json`
