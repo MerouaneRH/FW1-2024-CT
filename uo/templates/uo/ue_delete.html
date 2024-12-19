@@ -4,13 +4,29 @@
 
 {% block content %}
 <div class="container py-5">
-    <h1 class="text-danger">Supprimer l'UE : {{ ue.titre }}</h1>
-    <p>Êtes-vous sûr de vouloir supprimer cette unité d'enseignement ? Cette action est irréversible.</p>
-    
-    <form method="post">
+    <!-- Titre principal -->
+    <div class="text-center mb-4">
+        <h1 class="display-4 text-danger">
+            <i class="fas fa-trash-alt" style="color: #ed0000;"></i> Supprimer l'UE : <span style="color: #18534F;">{{ ue.titre }}</span>
+        </h1>
+        <p class="lead" style="color: #226D68;">
+            Êtes-vous sûr de vouloir supprimer cette unité d'enseignement ? <br>
+            <strong>Attention :</strong> Cette action est irréversible.
+        </p>
+    </div>
+
+    <!-- Formulaire de confirmation -->
+    <form method="post" class="text-center card p-4 shadow-sm mx-auto" style="max-width: 600px; background-color: #ECF8F6; border-color: #FEEAA1;">
         {% csrf_token %}
-        <button type="submit" class="btn btn-danger">Confirmer la suppression</button>
-        <a href="{% url 'ue_detail' ue.id %}" class="btn btn-secondary">Annuler</a>
+        <div class="d-flex justify-content-center">
+            <button type="submit" class="btn btn-danger w-50 me-2">
+                <i class="fas fa-check-circle"></i> Confirmer la suppression
+            </button>
+            <a href="{% url 'ue_detail' ue.id %}" class="btn btn-secondary w-50">
+                <i class="fas fa-times-circle"></i> Annuler
+            </a>
+        </div>
     </form>
 </div>
+
 {% endblock %}

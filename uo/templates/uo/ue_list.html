@@ -5,18 +5,46 @@ Liste des unités d'enseignement
 {% endblock %}
 
 {% block content %}
-<h2>Liste des unités d'enseignement</h2>
-<ul class="list-group">
-    {% for ue in ues %}
-        <li class="list-group-item d-flex justify-content-between align-items-center">
-            <a href="{% url 'ue_detail' ue.id %}">
-                {{ ue.titre }}
-            </a>
-            <!-- Bouton de suppression -->
-            <a href="{% url 'ue_delete' ue.id %}" class="btn btn-danger btn-sm">Supprimer</a>
-        </li>
-    {% empty %}
-        <li class="list-group-item">Aucune unité d'enseignement disponible.</li>
-    {% endfor %}
-</ul>
+<div class="container py-5">
+    <!-- Titre principal -->
+    <div class="text-center mb-4">
+        <h1 class="display-4" style="color: #18534F;">
+            <i class="fas fa-book" style="color: #D6955B;"></i> Liste des unités d'enseignement
+        </h1>
+        <p class="lead" style="color: #226D68;">
+            Explorez toutes les unités d'enseignement disponibles et gérez-les facilement.
+        </p>
+    </div>
+
+    <!-- Liste des UE -->
+    <ul class="list-group shadow-sm">
+        {% for ue in ues %}
+            <li class="list-group-item d-flex justify-content-between align-items-center" style="background-color: #ECF8F6; border-color: #FEEAA1;">
+                <a href="{% url 'ue_detail' ue.id %}" style="color: #18534F; text-decoration: none;">
+                    <i class="fas fa-chevron-right"></i> {{ ue.titre }}
+                </a>
+                <div>
+                    <!-- Boutons -->
+                    <a href="{% url 'ue_edit' ue.id %}" class="btn btn-warning btn-sm me-2" style="background-color: #FEEAA1; color: #18534F;">
+                        <i class="fas fa-edit"></i> Modifier
+                    </a>
+                    <a href="{% url 'ue_delete' ue.id %}" class="btn btn-danger btn-sm">
+                        <i class="fas fa-trash-alt"></i> Supprimer
+                    </a>
+                </div>
+            </li>
+        {% empty %}
+            <li class="list-group-item text-center" style="background-color: #ECF8F6; color: #226D68;">
+                <i class="fas fa-exclamation-circle"></i> Aucune unité d'enseignement disponible.
+            </li>
+        {% endfor %}
+    </ul>
+
+    <!-- Bouton Ajouter -->
+    <div class="text-center mt-4">
+        <a href="{% url 'ue_add' %}" class="btn btn-success btn-lg" style="background-color: #18534F; color: #ECF8F6;">
+            <i class="fas fa-plus-circle"></i> Ajouter une unité d'enseignement
+        </a>
+    </div>
+</div>
 {% endblock %}

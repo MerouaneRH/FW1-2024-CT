@@ -1,70 +1,86 @@
 {% extends 'uo/base.html' %}
 
 {% block title %}
-Modifier l'unité d'enseignement
+Modifier l'unité d'enseignement : {{ ue.titre }}
 {% endblock %}
 
 {% block content %}
-<h2>Modifier l'unité d'enseignement : {{ ue.titre }}</h2>
-<form method="post">
-    {% csrf_token %}
-    
-    <div class="row">
-        <label for="{{ form.titre.id_for_label }}" class="col-md-2 col-form-label">Titre:</label>
-        <div class="col-md-10">
+<div class="container py-5">
+    <!-- Titre principal -->
+    <div class="text-center mb-4">
+        <h1 class="display-4" style="color: #18534F;">
+            <i class="fas fa-edit" style="color: #D6955B;"></i> Modifier l'unité d'enseignement
+        </h1>
+        <p class="lead" style="color: #226D68;">
+            Apportez vos modifications ci-dessous pour mettre à jour l'unité d'enseignement : <strong>{{ ue.titre }}</strong>.
+        </p>
+    </div>
+
+    <!-- Formulaire -->
+    <form method="post" class="card p-4 shadow-sm" style="background-color: #ECF8F6; border-color: #FEEAA1;">
+        {% csrf_token %}
+
+        <div class="mb-3">
+            <label for="{{ form.titre.id_for_label }}" class="form-label" style="color: #18534F;">
+                <i class="fas fa-heading"></i> Titre :
+            </label>
             {{ form.titre }}
         </div>
-    </div>
 
-    <div class="row">
-        <label for="{{ form.description.id_for_label }}" class="col-md-2 col-form-label">Description:</label>
-        <div class="col-md-10">
+        <div class="mb-3">
+            <label for="{{ form.description.id_for_label }}" class="form-label" style="color: #18534F;">
+                <i class="fas fa-align-left"></i> Description :
+            </label>
             {{ form.description }}
         </div>
-    </div>
 
-    <div class="row">
-        <label for="{{ form.CM.id_for_label }}" class="col-md-2 col-form-label">CM:</label>
-        <div class="col-md-10">
+        <div class="mb-3">
+            <label for="{{ form.CM.id_for_label }}" class="form-label" style="color: #18534F;">
+                <i class="fas fa-clock"></i> CM (heures) :
+            </label>
             {{ form.CM }}
         </div>
-    </div>
 
-    <div class="row">
-        <label for="{{ form.TD.id_for_label }}" class="col-md-2 col-form-label">TD:</label>
-        <div class="col-md-10">
+        <div class="mb-3">
+            <label for="{{ form.TD.id_for_label }}" class="form-label" style="color: #18534F;">
+                <i class="fas fa-chalkboard-teacher"></i> TD (heures) :
+            </label>
             {{ form.TD }}
         </div>
-    </div>
 
-    <div class="row">
-        <label for="{{ form.TP.id_for_label }}" class="col-md-2 col-form-label">TP:</label>
-        <div class="col-md-10">
+        <div class="mb-3">
+            <label for="{{ form.TP.id_for_label }}" class="form-label" style="color: #18534F;">
+                <i class="fas fa-tools"></i> TP (heures) :
+            </label>
             {{ form.TP }}
         </div>
-    </div>
 
-    <div class="row">
-        <label for="{{ form.credits.id_for_label }}" class="col-md-2 col-form-label">Crédits:</label>
-        <div class="col-md-10">
+        <div class="mb-3">
+            <label for="{{ form.credits.id_for_label }}" class="form-label" style="color: #18534F;">
+                <i class="fas fa-coins"></i> Crédits :
+            </label>
             {{ form.credits }}
         </div>
-    </div>
 
-    <div class="row">
-        <label for="{{ form.responsables.id_for_label }}" class="col-md-2 col-form-label">Responsables:</label>
-        <div class="col-md-10">
+        <div class="mb-3">
+            <label for="{{ form.responsables.id_for_label }}" class="form-label" style="color: #18534F;">
+                <i class="fas fa-user"></i> Responsables :
+            </label>
             {{ form.responsables }}
         </div>
-    </div>
 
-    <div class="row">
-        <label for="{{ form.formations.id_for_label }}" class="col-md-2 col-form-label">Formations:</label>
-        <div class="col-md-10">
+        <div class="mb-3">
+            <label for="{{ form.formations.id_for_label }}" class="form-label" style="color: #18534F;">
+                <i class="fas fa-university"></i> Formations :
+            </label>
             {{ form.formations }}
         </div>
-    </div>
 
-    <button type="submit" class="btn btn-primary">Enregistrer les modifications</button>
-</form>
+        <div class="text-center">
+            <button type="submit" class="btn" style="background-color: #18534F; color: #ECF8F6;">
+                <i class="fas fa-save"></i> Enregistrer les modifications
+            </button>
+        </div>
+    </form>
+</div>
 {% endblock %}

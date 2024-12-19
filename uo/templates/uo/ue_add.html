@@ -5,66 +5,91 @@ Ajouter une unité d'enseignement
 {% endblock %}
 
 {% block content %}
-<h2>Ajouter une unité d'enseignement</h2>
-<form method="post">
-    {% csrf_token %}
+<div class="container py-5">
+    <!-- Titre principal -->
+    <div class="text-center mb-4">
+        <h1 class="display-4" style="color: #18534F;">
+            <i class="fas fa-plus-circle" style="color: #D6955B;"></i> Ajouter une unité d'enseignement
+        </h1>
+        <p class="lead" style="color: #226D68;">
+            Veuillez remplir les informations ci-dessous pour ajouter une nouvelle unité d'enseignement.
+        </p>
+    </div>
 
-    <div class="row">
-        <label for="{{ form.titre.id_for_label }}" class="col-md-2 col-form-label">Titre:</label>
-        <div class="col-md-10">
+    <!-- Formulaire -->
+    <form method="post" class="card p-4 shadow-sm" style="background-color: #ECF8F6; border-color: #18534F;">
+        {% csrf_token %}
+
+        <!-- Champ Titre -->
+        <div class="mb-3">
+            <label for="{{ form.titre.id_for_label }}" class="form-label" style="color: #18534F;">
+                <i class="fas fa-heading"></i> Titre :
+            </label>
             {{ form.titre }}
         </div>
-    </div>
 
-    <div class="row">
-        <label for="{{ form.description.id_for_label }}" class="col-md-2 col-form-label">Description:</label>
-        <div class="col-md-10">
+        <!-- Champ Description -->
+        <div class="mb-3">
+            <label for="{{ form.description.id_for_label }}" class="form-label" style="color: #18534F;">
+                <i class="fas fa-align-left"></i> Description :
+            </label>
             {{ form.description }}
         </div>
-    </div>
 
-    <div class="row">
-        <label for="{{ form.CM.id_for_label }}" class="col-md-2 col-form-label">CM:</label>
-        <div class="col-md-10">
+        <!-- Champ CM -->
+        <div class="mb-3">
+            <label for="{{ form.CM.id_for_label }}" class="form-label" style="color: #18534F;">
+                <i class="fas fa-clock"></i> CM (heures) :
+            </label>
             {{ form.CM }}
         </div>
-    </div>
 
-    <div class="row">
-        <label for="{{ form.TD.id_for_label }}" class="col-md-2 col-form-label">TD:</label>
-        <div class="col-md-10">
+        <!-- Champ TD -->
+        <div class="mb-3">
+            <label for="{{ form.TD.id_for_label }}" class="form-label" style="color: #18534F;">
+                <i class="fas fa-chalkboard-teacher"></i> TD (heures) :
+            </label>
             {{ form.TD }}
         </div>
-    </div>
 
-    <div class="row">
-        <label for="{{ form.TP.id_for_label }}" class="col-md-2 col-form-label">TP:</label>
-        <div class="col-md-10">
+        <!-- Champ TP -->
+        <div class="mb-3">
+            <label for="{{ form.TP.id_for_label }}" class="form-label" style="color: #18534F;">
+                <i class="fas fa-tools"></i> TP (heures) :
+            </label>
             {{ form.TP }}
         </div>
-    </div>
 
-    <div class="row">
-        <label for="{{ form.credits.id_for_label }}" class="col-md-2 col-form-label">Crédits:</label>
-        <div class="col-md-10">
+        <!-- Champ Crédits -->
+        <div class="mb-3">
+            <label for="{{ form.credits.id_for_label }}" class="form-label" style="color: #18534F;">
+                <i class="fas fa-coins"></i> Crédits :
+            </label>
             {{ form.credits }}
         </div>
-    </div>
 
-    <div class="row">
-        <label for="{{ form.responsables.id_for_label }}" class="col-md-2 col-form-label">Responsables:</label>
-        <div class="col-md-10">
+        <!-- Champ Responsables -->
+        <div class="mb-3">
+            <label for="{{ form.responsables.id_for_label }}" class="form-label" style="color: #18534F;">
+                <i class="fas fa-user"></i> Responsables :
+            </label>
             {{ form.responsables }}
         </div>
-    </div>
-    
-    <div class="row">
-        <label for="{{ form.formations.id_for_label }}" class="col-md-2 col-form-label">Formations:</label>
-        <div class="col-md-10">
+
+        <!-- Champ Formations -->
+        <div class="mb-3">
+            <label for="{{ form.formations.id_for_label }}" class="form-label" style="color: #18534F;">
+                <i class="fas fa-university"></i> Formations :
+            </label>
             {{ form.formations }}
         </div>
-    </div>
 
-    <button type="submit" class="btn btn-primary">Ajouter</button>
-</form>
+        <!-- Bouton Ajouter -->
+        <div class="text-center">
+            <button type="submit" class="btn" style="background-color: #18534F; color: #ECF8F6;">
+                <i class="fas fa-save"></i> Ajouter
+            </button>
+        </div>
+    </form>
+</div>
 {% endblock %}
