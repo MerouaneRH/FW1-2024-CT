@@ -25,3 +25,20 @@
 1. `python manage.py migrate`
 2. `python manage.py createsuperuser`
 
+
+## MDP UTILISATEUR QUESTION 4 :
+
+1. `liste des utilisateurs (nom d'utilisateur) : frederic-loulergue, martinod, rivault, Couvreur, administrateur`
+2. `mdp de frederic-loulergue : FLuniv45000`
+3. `mdp de martinod : MARTINODuniv45000`
+4. `mdp de rivault : RIVAULTuniv45000`
+5. `mdp de Couvreur : Couvreuruniv45000`
+6. `mdp de administrateur : ADMINuniv45000`
+
+
+## COMMANDES QUESTION4 :
+
+1. `python manage.py migrate`
+2. `python manage.py createsuperuser`
+3. `python manage.py dumpdata >  uo/fixtures/enseignant.json` 
+
