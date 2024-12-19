@@ -36,9 +36,13 @@
 6. `mdp de administrateur : ADMINuniv45000`
 
 
-## COMMANDES QUESTION4 :
+## COMMANDES QUESTION 4 :
 
 1. `python manage.py migrate`
 2. `python manage.py createsuperuser`
 3. `python manage.py dumpdata >  uo/fixtures/enseignant.json` 
 
+## COMMANDES QUESTION 5 :
+
+1. `python manage.py makemigrations`
+2. `python manage.py migrate`
