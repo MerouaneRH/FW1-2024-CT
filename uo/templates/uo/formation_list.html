@@ -1,0 +1,20 @@
+{% extends 'uo/base.html' %}
+
+{% block title %}
+Liste des formations
+{% endblock %}
+
+{% block content %}
+<h2>Liste des formations</h2>
+<ul class="list-group">
+    {% for formation in formations %}
+        <li class="list-group-item">
+            <a href="{% url 'formation_detail' formation.id %}">
+                {{ formation.intitule }}
+            </a>
+        </li>
+    {% empty %}
+        <li class="list-group-item">Aucune formation disponible.</li>
+    {% endfor %}
+</ul>
+{% endblock %}
