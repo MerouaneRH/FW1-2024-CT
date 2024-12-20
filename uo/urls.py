@@ -17,6 +17,8 @@ urlpatterns = [
     path('accounts/login/', views.custom_login, name='login'),
     path('accounts/logout/', views.custom_logout, name='logout'),
 
+    path("formation/<int:formation_id>/stats/", views.formation_stats, name="formation_stats"),
+
 
 
 ]

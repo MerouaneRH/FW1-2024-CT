@@ -1,0 +1,89 @@
+{% extends 'uo/base.html' %}
+
+{% block title %}
+Statistiques pour {{ formation.intitule }}
+{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <!-- Titre principal -->
+    <div class="text-center mb-4">
+        <h1 class="display-4" style="color: #18534F;">
+            <i class="fas fa-chart-bar" style="color: #D6955B;"></i> Statistiques pour la formation :
+            <span style="color: #18534F;">{{ formation.intitule }}</span>
+        </h1>
+        <p class="lead" style="color: #226D68; font-size: 1.2rem;">
+            Responsable : <strong style="color: #18534F;">{{ formation.responsable.get_full_name }}</strong>
+        </p>
+    </div>
+
+    <hr class="mb-4" style="border-color: #FEEAA1;">
+
+    <!-- Informations générales -->
+    <div class="card shadow-sm mb-4" style="background-color: #ECF8F6; border-color: #FEEAA1;">
+        <div class="card-body">
+            <h2 class="card-title" style="color: #18534F;">
+                <i class="fas fa-info-circle" style="color: #D6955B;"></i> Informations générales
+            </h2>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item" style="background-color: #ECF8F6; color: #226D68;">
+                    <strong>Nombre d'UE :</strong> {{ nombre_ues }}
+                </li>
+                <li class="list-group-item" style="background-color: #ECF8F6; color: #226D68;">
+                    <strong>Total ECTS :</strong> {{ total_ects }}
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Responsables des UE -->
+    <div class="card shadow-sm mb-4" style="background-color: #ECF8F6; border-color: #FEEAA1;">
+        <div class="card-body">
+            <h2 class="card-title" style="color: #18534F;">
+                <i class="fas fa-user" style="color: #D6955B;"></i> Responsables des UE (triés par ordre alphabétique)
+            </h2>
+            <ul class="list-group list-group-flush">
+                {% for responsable in responsables_ue %}
+                    <li class="list-group-item" style="background-color: #ECF8F6; color: #226D68;">
+                        <i class="fas fa-chevron-right" style="color: #D6955B;"></i> {{ responsable }}
+                    </li>
+                {% empty %}
+                    <li class="list-group-item text-center" style="background-color: #ECF8F6; color: #226D68;">
+                        <i class="fas fa-exclamation-circle" style="color: #D6955B;"></i> Aucun responsable d'UE enregistré.
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <!-- Volumes horaires -->
+    <div class="card shadow-sm mb-4" style="background-color: #ECF8F6; border-color: #FEEAA1;">
+        <div class="card-body">
+            <h2 class="card-title" style="color: #18534F;">
+                <i class="fas fa-clock" style="color: #D6955B;"></i> Volumes horaires
+            </h2>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item" style="background-color: #ECF8F6; color: #226D68;">
+                    <strong>Total CM :</strong> {{ volume_cm }} heures
+                </li>
+                <li class="list-group-item" style="background-color: #ECF8F6; color: #226D68;">
+                    <strong>Total TD :</strong> {{ volume_td }} heures
+                </li>
+                <li class="list-group-item" style="background-color: #ECF8F6; color: #226D68;">
+                    <strong>Total TP :</strong> {{ volume_tp }} heures
+                </li>
+                <li class="list-group-item" style="background-color: #ECF8F6; color: #226D68;">
+                    <strong>Volume total équivalent TD :</strong> {{ volume_total_equivalent_td }} heures
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Bouton Retour -->
+    <div class="text-center mt-4">
+        <a href="{% url 'formation_list' %}" class="btn btn-lg" style="background-color: #18534F; color: #ECF8F6;">
+            <i class="fas fa-arrow-left"></i> Retour à la liste des formations
+        </a>
+    </div>
+</div>
+{% endblock %}
