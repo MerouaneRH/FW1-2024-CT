@@ -5,6 +5,8 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from .models import UE 
 
 
 # Create your views here.
@@ -13,6 +15,8 @@ from django.contrib import messages
 def about(request):
     return render(request,"uo/about.html")
 
+def home(request):
+    return render(request, 'uo/home.html')
 
 def formation_detail(request, n):
     formation = get_object_or_404(Formation, pk=n)
@@ -34,19 +38,25 @@ def ue_list(request):
     ues = UE.objects.all()
     return render(request, 'uo/ue_list.html', {'ues': ues})
 
+@login_required
 def ue_add(request):
+    # Vérifiez les formations pour lesquelles l'utilisateur est responsable
+    formations_responsable = Formation.objects.filter(responsable=request.user)
+
     if request.method == 'POST':
         form = UEForm(request.POST)
         if form.is_valid():
-            form.save()
+            ue = form.save()
             return redirect('ue_list')
     else:
         form = UEForm()
-    return render(request, 'uo/ue_add.html', {'form': form})
 
-def home(request):
-    return render(request, 'uo/home.html')
+    return render(request, 'uo/ue_add.html', {
+        'form': form,
+        'formations_responsable': formations_responsable
+    })
 
+@login_required
 def ue_edit(request, m):
     ue = get_object_or_404(UE, id=m)
 
@@ -63,6 +73,7 @@ def ue_edit(request, m):
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 
+@login_required
 def ue_delete(request, m):
     ue = get_object_or_404(UE, id=m)
 

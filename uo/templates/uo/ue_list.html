@@ -1,4 +1,4 @@
-{% extends 'uo/base.html' %}
+{% extends 'uo/base.html' %} 
 
 {% block title %}
 Liste des unités d'enseignement
@@ -17,34 +17,61 @@ Liste des unités d'enseignement
     </div>
 
     <!-- Liste des UE -->
-    <ul class="list-group shadow-sm">
-        {% for ue in ues %}
-            <li class="list-group-item d-flex justify-content-between align-items-center" style="background-color: #ECF8F6; border-color: #FEEAA1;">
-                <a href="{% url 'ue_detail' ue.id %}" style="color: #18534F; text-decoration: none;">
-                    <i class="fas fa-chevron-right"></i> {{ ue.titre }}
-                </a>
+<ul class="list-group shadow-sm">
+    {% for ue in ues %}
+        <li class="list-group-item d-flex justify-content-between align-items-center" style="background-color: #ECF8F6; border-color: #FEEAA1;">
+            <a href="{% url 'ue_detail' ue.id %}" style="color: #18534F; text-decoration: none;">
+                <i class="fas fa-chevron-right"></i> {{ ue.titre }}
+            </a>
+            {% if user.is_authenticated %}
                 <div>
-                    <!-- Boutons -->
-                    <a href="{% url 'ue_edit' ue.id %}" class="btn btn-warning btn-sm me-2" style="background-color: #FEEAA1; color: #18534F;">
-                        <i class="fas fa-edit"></i> Modifier
-                    </a>
-                    <a href="{% url 'ue_delete' ue.id %}" class="btn btn-danger btn-sm">
-                        <i class="fas fa-trash-alt"></i> Supprimer
-                    </a>
-                </div>
-            </li>
-        {% empty %}
-            <li class="list-group-item text-center" style="background-color: #ECF8F6; color: #226D68;">
-                <i class="fas fa-exclamation-circle"></i> Aucune unité d'enseignement disponible.
-            </li>
-        {% endfor %}
-    </ul>
+                    <!-- Variable pour éviter la redondance -->
+                    {% with has_displayed_buttons=False %}
+                        <!-- Vérifie si l'utilisateur est responsable de la formation -->
+                        {% for formation in ue.formations.all %}
+                            {% if formation.responsable.pk == user.pk %}
+                                <a href="{% url 'ue_edit' ue.id %}" class="btn btn-warning btn-sm me-2" style="background-color: #FEEAA1; color: #18534F;">
+                                    <i class="fas fa-edit"></i> Modifier
+                                </a>
+                                <a href="{% url 'ue_delete' ue.id %}" class="btn btn-danger btn-sm">
+                                    <i class="fas fa-trash-alt"></i> Supprimer
+                                </a>
+                                {% with has_displayed_buttons=True %}
+                                {% endwith %}
+                            {% endif %}
+                        {% endfor %}
 
-    <!-- Bouton Ajouter -->
-    <div class="text-center mt-4">
-        <a href="{% url 'ue_add' %}" class="btn btn-success btn-lg" style="background-color: #18534F; color: #ECF8F6;">
-            <i class="fas fa-plus-circle"></i> Ajouter une unité d'enseignement
-        </a>
-    </div>
+                        <!-- Vérifie si l'utilisateur est responsable de l'UE seulement -->
+                        {% if not has_displayed_buttons %}
+                            {% for responsable in ue.responsables.all %}
+                                {% if user.pk == responsable.pk %}
+                                    <a href="{% url 'ue_edit' ue.id %}" class="btn btn-warning btn-sm me-2" style="background-color: #FEEAA1; color: #18534F;">
+                                        <i class="fas fa-edit"></i> Modifier
+                                    </a>
+                                    {% with has_displayed_buttons=True %}
+                                    {% endwith %}
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                    {% endwith %}
+                </div>
+            {% endif %}
+        </li>
+    {% empty %}
+        <li class="list-group-item text-center" style="background-color: #ECF8F6; color: #226D68;">
+            <i class="fas fa-exclamation-circle"></i> Aucune unité d'enseignement disponible.
+        </li>
+    {% endfor %}
+</ul>
+
+
+    <!-- Bouton Ajouter (uniquement pour les utilisateurs connectés) -->
+    {% if user.is_authenticated %}
+        <div class="text-center mt-4">
+            <a href="{% url 'ue_add' %}" class="btn btn-success btn-lg" style="background-color: #18534F; color: #ECF8F6;">
+                <i class="fas fa-plus-circle"></i> Ajouter une unité d'enseignement
+            </a>
+        </div>
+    {% endif %}
 </div>
-{% endblock %}
+{% endblock %} 

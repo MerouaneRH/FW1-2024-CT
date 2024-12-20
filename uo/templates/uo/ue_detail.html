@@ -10,13 +10,41 @@
     </p>
 
     <!-- Boutons d'actions -->
-    <div class="mb-4 d-flex">
-        <a href="{% url 'ue_delete' ue.id %}" class="btn btn-danger me-2">
-            <i class="fas fa-trash-alt"></i> Supprimer cette UE
-        </a>
-        <a href="{% url 'ue_edit' ue.id %}" class="btn btn-primary me-2">
-            <i class="fas fa-edit"></i> Modifier cette UE
-        </a>
+    {% if user.is_authenticated %}
+        <div class="mb-4 d-flex">
+            {% with has_displayed_buttons=False %}
+                <!-- Vérifie si l'utilisateur est responsable de la formation -->
+                {% for formation in ue.formations.all %}
+                    {% if formation.responsable.pk == user.pk %}
+                        <a href="{% url 'ue_delete' ue.id %}" class="btn btn-danger me-2">
+                            <i class="fas fa-trash-alt"></i> Supprimer cette UE
+                        </a>
+                        <a href="{% url 'ue_edit' ue.id %}" class="btn btn-primary me-2">
+                            <i class="fas fa-edit"></i> Modifier cette UE
+                        </a>
+                        {% with has_displayed_buttons=True %}
+                        {% endwith %}
+                    {% endif %}
+                {% endfor %}
+
+                <!-- Si l'utilisateur n'est pas responsable de la formation mais est responsable de l'UE -->
+                {% if not has_displayed_buttons %}
+                    {% for responsable in ue.responsables.all %}
+                        {% if responsable.pk == user.pk %}
+                            <a href="{% url 'ue_edit' ue.id %}" class="btn btn-primary me-2">
+                                <i class="fas fa-edit"></i> Modifier cette UE
+                            </a>
+                            {% with has_displayed_buttons=True %}
+                            {% endwith %}
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </div>
+    {% endif %}
+
+    <!-- Bouton Retour à la liste des UEs -->
+    <div class="mb-4">
         <a href="{% url 'ue_list' %}" class="btn btn-secondary">
             <i class="fas fa-arrow-left"></i> Retour à la liste des UEs
         </a>
