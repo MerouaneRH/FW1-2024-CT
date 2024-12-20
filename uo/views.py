@@ -6,7 +6,8 @@ from django.urls import reverse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .models import UE 
+from django.core.exceptions import PermissionDenied
+from django.contrib.auth.models import User 
 
 
 # Create your views here.
@@ -101,3 +102,41 @@ def custom_logout(request):
     logout(request)
     messages.success(request, "Déconnexion réussie.")
     return redirect('home')  # Rediriger vers la page d'accueil
+
+@login_required
+def formation_stats(request, formation_id):
+    formation = get_object_or_404(Formation, id=formation_id)
+
+    # Vérifie si l'utilisateur est responsable de la formation
+    if formation.responsable != request.user:
+        raise PermissionDenied("Accès refusé : vous n'êtes pas responsable de cette formation.")
+
+    # Calcul des statistiques
+    ues = formation.ue_set.all()  # Obtenir toutes les UE liées à la formation
+    nombre_ues = ues.count()
+    print("avant le tri")
+    # Obtenir tous les responsables des UE liés à la formation, triés par ordre alphabétique
+    responsables_ue = (
+        User.objects.filter(ue__in=ues)  # Filtrer les utilisateurs responsables des UE
+        .distinct()
+        .order_by("last_name", "first_name")  # Trier par ordre alphabétique
+    )
+    print("après le tri"+str(responsables_ue))
+    volume_cm = sum(ue.CM for ue in ues)
+    volume_td = sum(ue.TD for ue in ues)
+    volume_tp = sum(ue.TP for ue in ues)
+    volume_total_equivalent_td = volume_cm * 1.5 + volume_td + volume_tp
+    total_ects = sum(ue.credits for ue in ues)
+
+    # Envoie des données au template
+    context = {
+        'formation': formation,
+        'nombre_ues': nombre_ues,
+        'responsables_ue': responsables_ue,
+        'volume_cm': volume_cm,
+        'volume_td': volume_td,
+        'volume_tp': volume_tp,
+        'volume_total_equivalent_td': volume_total_equivalent_td,
+        'total_ects': total_ects,
+    }
+    return render(request, 'uo/formation_stats.html', context)

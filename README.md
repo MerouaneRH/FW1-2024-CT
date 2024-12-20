@@ -103,3 +103,29 @@
 ## COMMANDES QUESTION 19:
 
 1. `python manage.py runserver 0.0.0.0:8000 `
+
+## COMMANDES QUESTION 20:
+
+1. `python manage.py runserver 0.0.0.0:8000 `
+
+
+## Pour tester sans passer par toutes les commandes
+
+1. `python manage.py makemigrations`
+
+2. `python manage.py migrate`
+
+3. `python manage.py loaddata  uo/fixtures/enseignant.json`
+
+4. `python manage.py loaddata uo/fixtures/formation.json`
+
+5. `python manage.py loaddata uo/fixtures/ue.json`
+
+6. `Nb : Les utilisateurs avec leurs mots de passe sont mentionnés dans la question 4.`
+
+
+
+
+
+
+
