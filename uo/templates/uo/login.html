@@ -1,0 +1,44 @@
+{% extends 'uo/base.html' %}
+
+{% block title %}Connexion{% endblock %}
+
+{% block content %}
+<div class="container py-5 d-flex justify-content-center">
+    <div class="card p-4 shadow-sm col-md-6 col-lg-5" style="background-color: #ECF8F6; border-color: #FEEAA1;">
+        <div class="text-center mb-4">
+            <h1 class="display-6" style="color: #18534F;">
+                <i class="fas fa-sign-in-alt" style="color: #D6955B;"></i> Connexion
+            </h1>
+            <p class="lead" style="color: #226D68;">Connectez-vous pour accéder à toutes les fonctionnalités de l'application.</p>
+        </div>
+
+        <!-- Formulaire de connexion -->
+        <form method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="id_username" class="form-label" style="color: #18534F;">
+                    <i class="fas fa-user"></i> Nom d'utilisateur
+                </label>
+                <input type="text" name="username" id="id_username" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="id_password" class="form-label" style="color: #18534F;">
+                    <i class="fas fa-lock"></i> Mot de passe
+                </label>
+                <input type="password" name="password" id="id_password" class="form-control" required>
+            </div>
+
+            <!-- Bouton de soumission -->
+            <button type="submit" class="btn w-100" style="background-color: #18534F; color: #ECF8F6;">
+                <i class="fas fa-sign-in-alt"></i> Se connecter
+            </button>
+        </form>
+    </div>
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+{% endblock %}

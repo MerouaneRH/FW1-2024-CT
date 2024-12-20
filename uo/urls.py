@@ -1,5 +1,7 @@
 from uo import views
 from django.urls import path
+from django.contrib.auth import views as auth_views
+
 
 urlpatterns = [
     path('about/', views.about, name='about'),
@@ -11,6 +13,10 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('ue/modifier/<int:m>/', views.ue_edit, name='ue_edit'),
     path('ue/supprimer/<int:m>/', views.ue_delete, name='ue_delete'),
+    
+    path('accounts/login/', views.custom_login, name='login'),
+    path('accounts/logout/', views.custom_logout, name='logout'),
+
 
 
 ]
