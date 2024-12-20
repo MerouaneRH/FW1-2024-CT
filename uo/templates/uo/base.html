@@ -43,36 +43,44 @@
     </style>
 </head>
 <body>
-    <!-- Barre de navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #18534F;">
         <div class="container">
-            <a class="navbar-brand" href="/">
-                <i class="bi bi-house-door-fill"></i> Mon Application
-            </a>
+            <a class="navbar-brand" href="/">Mon Application</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item"><a class="nav-link" href="/formations/">Formations</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/ues/">Unités d'enseignement</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">À Propos</a></li>
+                </ul>
                 <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/formations/">
-                            <i class="bi bi-journal-bookmark-fill"></i> Formations
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/ues/">
-                            <i class="bi bi-collection-fill"></i> Unités d'enseignement
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'about' %}">
-                            <i class="bi bi-info-circle-fill"></i> À Propos
-                        </a>
-                    </li>
+                    {% if user.is_authenticated %}
+                        <li class="nav-item d-flex align-items-center">
+                            <span class="nav-link" style="color: #FEEAA1;">
+                                <i class="fas fa-user-circle"></i> {{ user.username }}
+                            </span>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'logout' %}">
+                                <i class="fas fa-sign-out-alt"></i> Déconnexion
+                            </a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'login' %}">
+                                <i class="fas fa-sign-in-alt"></i> Connexion
+                            </a>
+                        </li>
+                    {% endif %}
                 </ul>
             </div>
         </div>
     </nav>
+    
+    
+    
 
     <!-- Contenu principal -->
     <div class="container mt-4">
