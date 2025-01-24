@@ -1,131 +1,81 @@
-## NOMS ET PRENOMS DES MEMBRES DU GROUPE 
+# Gestion de Catalogue de Formations Universitaires 🎓
 
-- `GUILLARD Joan 22200841 joan.guillard@etu.univ-orleans.fr`
-- `HAMZE Muhamad 22208154 muhamad.hamze@etu.univ-orleans.fr`
-- `TOUBAL Rabah  22407021 rabah.toubal@etu.univ-orleans.fr`
-- `RAHMOUN Merouane 22406585 merouane.rahmoun@etu.univ-orleans.fr`
+Ce projet est une application web développée avec **Django** pour la gestion des formations et des unités d'enseignement (UE) d'un département universitaire. Il permet de consulter, ajouter, modifier et supprimer des formations et des UE, avec des fonctionnalités d'authentification et de gestion des autorisations.
 
-## COMMANDES QUESTION 1 :
+---
 
-1. `USERNAME=$(basename $(id -un) @campus.univ-orleans.fr) USERID=$(id -u) docker-compose up -d`
-2. `docker exec -ti fw1-ct-votre_nom_utilisateur whoami`
-3. `django-admin startproject ct`
-4. `python manage.py startapp uo`
+## Fonctionnalités 🚀
 
-5. `python manage.py runserver 0.0.0.0:8000 &`
+- **Gestion des Formations** : Ajout, modification, suppression et consultation des formations.
+- **Gestion des UE** : Ajout, modification, suppression et consultation des unités d'enseignement.
+- **Authentification** : Connexion et déconnexion des utilisateurs.
+- **Gestion des Autorisations** :
+  - Les responsables de formation peuvent gérer les UE rattachées à leur formation.
+  - Les responsables d'UE peuvent modifier les UE dont ils sont responsables.
+- **Interface Utilisateur** : Améliorée avec **Bootstrap** pour une meilleure expérience utilisateur.
 
+---
 
-## COMMANDES QUESTION 2 :
+## Structure du Projet 🗂️
 
-1. `python manage.py runserver 0.0.0.0:8000 &`
+- **ct** : Projet Django principal.
+- **uo** : Application Django pour la gestion des formations et des UE.
+- **README.md** : Fichier contenant les informations sur le projet et les commandes utilisées.
+- **ct/**, **uo/**, **manage.py** : Structure de base du projet Django.
 
+---
 
-## COMMANDES QUESTION 3 :
+## Installation et Utilisation 🛠️
 
-1. `python manage.py migrate`
-2. `python manage.py createsuperuser`
+### Prérequis
 
+- **Python**
+- **Django**
+- **Docker**
 
-## MDP UTILISATEUR QUESTION 4 :
+### Commandes Utiles
 
-1. `liste des utilisateurs (nom d'utilisateur) : frederic-loulergue, martinod, rivault, Couvreur, administrateur`
-2. `mdp de frederic-loulergue : FLuniv45000`
-3. `mdp de martinod : MARTINODuniv45000`
-4. `mdp de rivault : RIVAULTuniv45000`
-5. `mdp de Couvreur : Couvreuruniv45000`
-6. `mdp de administrateur : ADMINuniv45000`
+1. **Lancer le conteneur Docker** :
+   ```bash
+   USERNAME=$(id -un) USERID=$(id -u) docker-compose up -d
+   ```
 
+2. **Vérifier l'utilisateur dans le conteneur** :
+   ```bash
+   docker exec -ti fw1-ct-votre_nom_utilisateur whoami
+   ```
 
-## COMMANDES QUESTION 4 :
+3. **Créer les migrations** :
+   ```bash
+   python manage.py makemigrations
+   ```
 
-1. `python manage.py migrate`
-2. `python manage.py createsuperuser`
-3. `python manage.py dumpdata >  uo/fixtures/enseignant.json` 
+4. **Appliquer les migrations** :
+   ```bash
+   python manage.py migrate
+   ```
 
-## COMMANDES QUESTION 5 :
+5. **Charger les données des enseignants** :
+   ```bash
+   python manage.py loaddata uo/fixtures/enseignant.json
+   ```
 
-1. `python manage.py makemigrations`
-2. `python manage.py migrate`
+6. **Charger les données des formations** :
+   ```bash
+   python manage.py loaddata uo/fixtures/formation.json
+   ```
 
-## COMMANDES QUESTION 6:
-
-1. `python manage.py dumpdata > uo/fixtures/formation.json`
-
-## COMMANDES QUESTION 7 :
-
-1. `python manage.py makemigrations`
-2. `python manage.py migrate`
-
-## COMMANDES QUESTION 8:
-
-1. `python manage.py dumpdata > uo/fixtures/ue.json`
-
-## COMMANDES QUESTION 9:
-
-1. `python manage.py runserver 0.0.0.0:8000 &`
-
-## COMMANDES QUESTION 10:
-
-1. `python manage.py runserver 0.0.0.0:8000 &`
-
-## COMMANDES QUESTION 11:
-
-1. `python manage.py runserver 0.0.0.0:8000 &`
-
-## COMMANDES QUESTION 12:
-
-1. `python manage.py runserver 0.0.0.0:8000 &`
-
-## COMMANDES QUESTION 13:
-
-1. `python manage.py runserver 0.0.0.0:8000 &`
-
-## COMMANDES QUESTION 14:
-
-1. `python manage.py runserver 0.0.0.0:8000 &`
-
-## COMMANDES QUESTION 15:
-
-1. `python manage.py runserver 0.0.0.0:8000 &`
-
-## COMMANDES QUESTION 16:
-
-1. `python manage.py runserver 0.0.0.0:8000 `
-
-## COMMANDES QUESTION 17:
-
-1. `python manage.py runserver 0.0.0.0:8000 `
-
-## COMMANDES QUESTION 18:
-
-1. `python manage.py runserver 0.0.0.0:8000 `
-
-## COMMANDES QUESTION 19:
-
-1. `python manage.py runserver 0.0.0.0:8000 `
-
-## COMMANDES QUESTION 20:
-
-1. `python manage.py runserver 0.0.0.0:8000 `
+7. **Charger les données des UE** :
+   ```bash
+   python manage.py loaddata uo/fixtures/ue.json
+   ```
+   
+---
 
 
-## Pour tester sans passer par toutes les commandes
+## Équipe 👥
 
-1. `python manage.py makemigrations`
-
-2. `python manage.py migrate`
-
-3. `python manage.py loaddata  uo/fixtures/enseignant.json`
-
-4. `python manage.py loaddata uo/fixtures/formation.json`
-
-5. `python manage.py loaddata uo/fixtures/ue.json`
-
-6. `Nb : Les utilisateurs avec leurs mots de passe sont mentionnés dans la question 4.`
-
-
-
-
-
-
-
+- **GUILLARD Joan**
+- **HAMZE Muhamad**
+- **TOUBAL Rabah**
+- **RAHMOUN Merouane**
